@@ -1,0 +1,17 @@
+{
+  "name": "IBL Group · Shaping better lives since 1830",
+  "short_name": "IBL Group",
+  "description": "The leading diversified group of the Indian Ocean and East Africa. Live pulse, living constellation, two centuries of momentum.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0e23",
+  "theme_color": "#4bbdc8",
+  "icons": [
+    {
+      "src": "/brand/ibl-logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
