@@ -1,0 +1,1055 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+@custom-variant lens-investor (&:is([data-lens="investor"] *));
+@custom-variant lens-talent (&:is([data-lens="talent"] *));
+@custom-variant lens-partner (&:is([data-lens="partner"] *));
+@custom-variant lens-press (&:is([data-lens="press"] *));
+@custom-variant motion-ok (&:is(:not([data-motion="reduced"])));
+@custom-variant a11y-dyslexia (&:is([data-a11y="dyslexia"] *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-elza), "Elza", ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-mono: var(--font-elza), ui-monospace, monospace;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-teal: var(--ibl-teal);
+  --color-teal-deep: var(--ibl-teal-deep);
+  --color-ink: var(--ibl-ink);
+  --color-abyss: var(--ibl-abyss);
+  --color-retail: var(--cluster-retail);
+  --color-cbd: var(--cluster-cbd);
+  --color-industrials: var(--cluster-industrials);
+  --color-services: var(--cluster-services);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* ============ ELZA BRAND TYPEFACE (self hosted) ============ */
+@font-face {
+  font-family: "Elza";
+  src: url("/fonts/ElzaText-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Elza";
+  src: url("/fonts/ElzaText-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Elza";
+  src: url("/fonts/ElzaText-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Elza";
+  src: url("/fonts/ElzaText-Semibold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============ IBL LOCKED PALETTE ============ */
+:root {
+  --ibl-teal: #4bbdc8;
+  --ibl-teal-deep: #2e8f9c;
+  --ibl-ink: #212979;
+  --ibl-abyss: #0a0e23;
+  --cluster-retail: #4bbdc8;
+  --cluster-cbd: #2fa96e;
+  --cluster-industrials: #ee6c2b;
+  --cluster-services: #d63384;
+  --trust-accent: #d63384;
+  --active-cluster: var(--ibl-teal);
+  --lens-temp: var(--ibl-teal);
+
+  /* The one expensive ease, used everywhere */
+  --ease-luxe: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-luxe-in-out: cubic-bezier(0.83, 0, 0.17, 1);
+
+  /* Dark abyss is the default cinematic theme */
+  --radius: 0.9rem;
+  --background: #0a0e23;
+  --foreground: #eaf5f6;
+  --card: rgba(255, 255, 255, 0.04);
+  --card-foreground: #eaf5f6;
+  --popover: #0d1330;
+  --popover-foreground: #eaf5f6;
+  --primary: #4bbdc8;
+  --primary-foreground: #06131a;
+  --secondary: rgba(75, 189, 200, 0.1);
+  --secondary-foreground: #bfe9ed;
+  --muted: rgba(234, 245, 246, 0.07);
+  --muted-foreground: #8ba6b4;
+  --accent: rgba(75, 189, 200, 0.14);
+  --accent-foreground: #cdeef1;
+  --destructive: #e5484d;
+  --border: rgba(139, 166, 180, 0.16);
+  --input: rgba(139, 166, 180, 0.24);
+  --ring: #4bbdc8;
+  --chart-1: #4bbdc8;
+  --chart-2: #2fa96e;
+  --chart-3: #ee6c2b;
+  --chart-4: #d63384;
+  --chart-5: #212979;
+  --sidebar: #0a0e23;
+  --sidebar-foreground: #eaf5f6;
+  --sidebar-primary: #4bbdc8;
+  --sidebar-primary-foreground: #06131a;
+  --sidebar-accent: rgba(75, 189, 200, 0.14);
+  --sidebar-accent-foreground: #cdeef1;
+  --sidebar-border: rgba(139, 166, 180, 0.16);
+  --sidebar-ring: #4bbdc8;
+}
+
+[data-theme="light"] {
+  /* Warm paper luxury, the heritage default. Ink navy on gallery ivory. */
+  --ibl-teal: #1e9aa7;
+  --ibl-teal-deep: #157884;
+  --trust-accent: #b0246a;
+  --background: #f8f6f1;
+  --foreground: #161c4a;
+  --card: rgba(33, 41, 121, 0.05);
+  --card-foreground: #161c4a;
+  --popover: #fffdf9;
+  --popover-foreground: #161c4a;
+  --primary: #1e9aa7;
+  --primary-foreground: #f6fbfb;
+  --secondary: rgba(33, 41, 121, 0.07);
+  --secondary-foreground: #212979;
+  --muted: rgba(33, 41, 121, 0.055);
+  --muted-foreground: #5c658c;
+  --accent: rgba(30, 154, 167, 0.14);
+  --accent-foreground: #0f5a63;
+  --border: rgba(33, 41, 121, 0.14);
+  --input: rgba(33, 41, 121, 0.2);
+  --ring: #1e9aa7;
+  --sidebar: #f8f6f1;
+  --sidebar-foreground: #161c4a;
+  --sidebar-primary: #1e9aa7;
+  --sidebar-primary-foreground: #f6fbfb;
+  --sidebar-accent: rgba(30, 154, 167, 0.14);
+  --sidebar-accent-foreground: #0f5a63;
+  --sidebar-border: rgba(33, 41, 121, 0.14);
+  --sidebar-ring: #1e9aa7;
+}
+
+[data-theme="oled"] {
+  --background: #000000;
+  --foreground: #eaf5f6;
+  --card: rgba(255, 255, 255, 0.03);
+  --card-foreground: #eaf5f6;
+  --popover: #050505;
+  --popover-foreground: #eaf5f6;
+  --primary: #4bbdc8;
+  --primary-foreground: #06131a;
+  --secondary: rgba(75, 189, 200, 0.08);
+  --secondary-foreground: #bfe9ed;
+  --muted: rgba(234, 245, 246, 0.05);
+  --muted-foreground: #7d95a1;
+  --accent: rgba(75, 189, 200, 0.12);
+  --accent-foreground: #cdeef1;
+  --border: rgba(139, 166, 180, 0.13);
+  --input: rgba(139, 166, 180, 0.2);
+}
+
+[data-theme="sepia"] {
+  --ibl-teal: #96682c;
+  --ibl-teal-deep: #7a5423;
+  --trust-accent: #a04b30;
+  --background: #f2ead9;
+  --foreground: #3b3222;
+  --card: rgba(59, 50, 34, 0.05);
+  --card-foreground: #3b3222;
+  --popover: #f8f2e4;
+  --popover-foreground: #3b3222;
+  --primary: #9a6b2f;
+  --primary-foreground: #f8f2e4;
+  --secondary: rgba(59, 50, 34, 0.09);
+  --secondary-foreground: #3b3222;
+  --muted: rgba(59, 50, 34, 0.07);
+  --muted-foreground: #7a6c52;
+  --accent: rgba(154, 107, 47, 0.16);
+  --accent-foreground: #6b4a1d;
+  --border: rgba(59, 50, 34, 0.16);
+  --input: rgba(59, 50, 34, 0.24);
+  --ring: #9a6b2f;
+}
+
+/* Cluster accent themes shift the whole temperature */
+[data-theme="teal"] {
+  --primary: #4bbdc8;
+  --ring: #4bbdc8;
+}
+[data-theme="green"] {
+  --primary: #2fa96e;
+  --ring: #2fa96e;
+}
+[data-theme="orange"] {
+  --primary: #ee6c2b;
+  --ring: #ee6c2b;
+}
+[data-theme="magenta"] {
+  --primary: #d63384;
+  --ring: #d63384;
+}
+
+/* User generated accent */
+[data-accent] {
+  --primary: var(--user-accent);
+  --ring: var(--user-accent);
+  --ibl-teal: var(--user-accent);
+}
+
+/* Colorblind corrected cluster hues (deuteranopia safe luminance split) */
+[data-a11y="colorblind"] {
+  --cluster-cbd: #0f8b8d;
+  --cluster-industrials: #d97f32;
+  --cluster-services: #a64d9a;
+  --cluster-retail: #56b4d3;
+}
+
+/* ============ BASE ============ */
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+}
+html[data-motion="reduced"],
+html[data-a11y="epilepsy"] {
+  scroll-behavior: auto;
+}
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-elza), "Elza", ui-sans-serif, system-ui, sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.011em;
+  overflow-x: clip;
+  transition: background-color 0.7s var(--ease-luxe), color 0.7s var(--ease-luxe);
+}
+::selection {
+  background: color-mix(in srgb, var(--ibl-teal) 70%, transparent);
+  color: #06131a;
+}
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Custom scrollbar, teal tinted */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--ibl-teal) 45%, var(--background));
+  border-radius: 99px;
+  border: 2px solid var(--background);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--ibl-teal) 70%, var(--background));
+}
+.scrollbar-thin::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* ============ TYPOGRAPHY AS SPECTACLE ============ */
+.font-display {
+  font-family: var(--font-fraunces), Georgia, serif;
+}
+.h-display {
+  font-family: var(--font-elza), "Elza", sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 0.92;
+}
+.h-mega {
+  font-size: clamp(4.5rem, 15vw, 15rem);
+}
+.h-section {
+  font-size: clamp(2.6rem, 6.5vw, 6rem);
+}
+.h-sub {
+  font-size: clamp(1.35rem, 2.6vw, 2.1rem);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 1.04;
+}
+.text-outline {
+  -webkit-text-stroke: 1.5px color-mix(in srgb, var(--foreground) 62%, transparent);
+  color: transparent;
+}
+.text-outline-teal {
+  -webkit-text-stroke: 1.5px color-mix(in srgb, var(--ibl-teal) 75%, transparent);
+  color: transparent;
+}
+.eyebrow {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+.caption {
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  color: var(--muted-foreground);
+  line-height: 1.55;
+}
+
+/* ============ SIGNATURE MOTION LANGUAGE ============ */
+.ease-luxe {
+  transition-timing-function: var(--ease-luxe);
+}
+.assemble {
+  opacity: 0;
+  transform: translateY(34px);
+}
+.assemble.is-in {
+  animation: assemble-up 1.05s var(--ease-luxe) forwards;
+}
+@keyframes assemble-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes assemble-n {
+  from {
+    opacity: 0;
+    transform: translateY(-44px) rotate(-1.2deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+}
+@keyframes assemble-e {
+  from {
+    opacity: 0;
+    transform: translateX(56px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes assemble-s {
+  from {
+    opacity: 0;
+    transform: translateY(44px) rotate(1.2deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotate(0deg);
+  }
+}
+@keyframes assemble-w {
+  from {
+    opacity: 0;
+    transform: translateX(-56px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ---- The plate ink: engineering plates draw themselves onto the sheet ----
+   Every drawable carries pathLength=1 (stamped by the hook), so a dash of 1
+   plus an eased dashoffset is a uniform ink-on regardless of element length.
+   Detail groups tagged data-ink="late" come in on a second beat, labels fade
+   once the linework has settled, and the hook strips the class afterwards so
+   true dashed conventions (vapour, routes) return to their dotted dress. */
+.plate-draw line,
+.plate-draw circle,
+.plate-draw rect,
+.plate-draw path,
+.plate-draw polyline {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+.plate-draw.is-inked line,
+.plate-draw.is-inked circle,
+.plate-draw.is-inked rect,
+.plate-draw.is-inked path,
+.plate-draw.is-inked polyline {
+  animation: plate-ink 1.5s var(--ease-luxe) 0.1s forwards;
+}
+.plate-draw.is-inked g[data-ink="late"] line,
+.plate-draw.is-inked g[data-ink="late"] circle,
+.plate-draw.is-inked g[data-ink="late"] rect,
+.plate-draw.is-inked g[data-ink="late"] path,
+.plate-draw.is-inked g[data-ink="late"] polyline {
+  animation-delay: 0.55s;
+}
+.plate-draw text {
+  opacity: 0;
+  transition: opacity 0.7s var(--ease-luxe) 1.15s;
+}
+.plate-draw.is-inked text {
+  opacity: 1;
+}
+@keyframes plate-ink {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .plate-draw line,
+  .plate-draw circle,
+  .plate-draw rect,
+  .plate-draw path,
+  .plate-draw polyline,
+  .plate-draw.is-inked line,
+  .plate-draw.is-inked circle,
+  .plate-draw.is-inked rect,
+  .plate-draw.is-inked path,
+  .plate-draw.is-inked polyline {
+    animation: none;
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+  }
+  .plate-draw text,
+  .plate-draw.is-inked text {
+    opacity: 1;
+    transition: none;
+  }
+}
+html[data-motion="reduced"] .plate-draw line,
+html[data-motion="reduced"] .plate-draw circle,
+html[data-motion="reduced"] .plate-draw rect,
+html[data-motion="reduced"] .plate-draw path,
+html[data-motion="reduced"] .plate-draw polyline,
+html[data-motion="reduced"] .plate-draw.is-inked line,
+html[data-motion="reduced"] .plate-draw.is-inked circle,
+html[data-motion="reduced"] .plate-draw.is-inked rect,
+html[data-motion="reduced"] .plate-draw.is-inked path,
+html[data-motion="reduced"] .plate-draw.is-inked polyline,
+html[data-a11y="epilepsy"] .plate-draw line,
+html[data-a11y="epilepsy"] .plate-draw circle,
+html[data-a11y="epilepsy"] .plate-draw rect,
+html[data-a11y="epilepsy"] .plate-draw path,
+html[data-a11y="epilepsy"] .plate-draw polyline,
+html[data-a11y="epilepsy"] .plate-draw.is-inked line,
+html[data-a11y="epilepsy"] .plate-draw.is-inked circle,
+html[data-a11y="epilepsy"] .plate-draw.is-inked rect,
+html[data-a11y="epilepsy"] .plate-draw.is-inked path,
+html[data-a11y="epilepsy"] .plate-draw.is-inked polyline {
+  animation: none;
+  stroke-dasharray: none;
+  stroke-dashoffset: 0;
+}
+html[data-motion="reduced"] .plate-draw text,
+html[data-motion="reduced"] .plate-draw.is-inked text,
+html[data-a11y="epilepsy"] .plate-draw text,
+html[data-a11y="epilepsy"] .plate-draw.is-inked text {
+  opacity: 1;
+  transition: none;
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(0, -18px, 0) rotate(1.5deg);
+  }
+}
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+@keyframes ticker-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+@keyframes blink-soft {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+.live-dot::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 99px;
+  background: var(--ibl-teal);
+  box-shadow: 0 0 12px 2px color-mix(in srgb, var(--ibl-teal) 65%, transparent);
+  animation: blink-soft 2.4s var(--ease-luxe) infinite;
+}
+
+/* Reduced motion and epilepsy safe profiles kill decorative motion */
+html[data-motion="reduced"] *,
+html[data-a11y="epilepsy"] * {
+  animation-duration: 0.001s !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.15s !important;
+  scroll-behavior: auto !important;
+}
+
+/* ============ DEPTH SYSTEM ============ */
+.shadow-teal {
+  box-shadow: 0 24px 80px -28px rgba(46, 143, 156, 0.5);
+}
+.shadow-teal-lg {
+  box-shadow: 0 40px 120px -32px rgba(46, 143, 156, 0.55);
+}
+/* Paper themes want ink shadows, not glow */
+html[data-theme="light"] .shadow-teal {
+  box-shadow:
+    0 2px 6px -2px rgba(33, 41, 121, 0.08),
+    0 24px 70px -30px rgba(33, 41, 121, 0.24);
+}
+html[data-theme="light"] .shadow-teal-lg {
+  box-shadow:
+    0 4px 12px -4px rgba(33, 41, 121, 0.1),
+    0 40px 110px -36px rgba(33, 41, 121, 0.28);
+}
+html[data-theme="sepia"] .shadow-teal {
+  box-shadow: 0 24px 70px -30px rgba(59, 50, 34, 0.26);
+}
+html[data-theme="sepia"] .shadow-teal-lg {
+  box-shadow: 0 40px 110px -36px rgba(59, 50, 34, 0.3);
+}
+.glass {
+  background: color-mix(in srgb, var(--background) 55%, transparent);
+  backdrop-filter: blur(18px) saturate(1.35);
+  -webkit-backdrop-filter: blur(18px) saturate(1.35);
+  border: 1px solid color-mix(in srgb, var(--foreground) 10%, transparent);
+}
+.glass-strong {
+  background: color-mix(in srgb, var(--popover) 82%, transparent);
+  backdrop-filter: blur(26px) saturate(1.4);
+  -webkit-backdrop-filter: blur(26px) saturate(1.4);
+}
+/* Frosted paper glass for the light grade */
+html[data-theme="light"] .glass {
+  background: color-mix(in srgb, #fffdf9 66%, transparent);
+  border-color: rgba(33, 41, 121, 0.12);
+}
+html[data-theme="light"] .glass-strong {
+  background: color-mix(in srgb, #fffdf9 88%, transparent);
+}
+html[data-theme="sepia"] .glass {
+  background: color-mix(in srgb, #f8f2e4 66%, transparent);
+}
+.lift {
+  transition: transform 0.6s var(--ease-luxe), box-shadow 0.6s var(--ease-luxe);
+}
+.lift:hover {
+  transform: translateY(-6px);
+}
+.tilt-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: box-shadow 0.5s var(--ease-luxe);
+}
+
+/* Film grain over dark surfaces */
+.grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.32'/%3E%3C/svg%3E");
+}
+/* On paper the grain becomes print texture, pressed not projected */
+html[data-theme="light"] .grain::before,
+html[data-theme="sepia"] .grain::before {
+  opacity: 0.24;
+  mix-blend-mode: multiply;
+}
+
+/* ============ DUOTONE PHOTOGRAPHY ============ */
+.duotone {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.duotone img {
+  filter: grayscale(1) contrast(1.08) brightness(0.94);
+  transition: filter 0.7s var(--ease-luxe), transform 1.2s var(--ease-luxe);
+}
+.duotone::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--duo-a, #212979) 82%, transparent),
+    color-mix(in srgb, var(--duo-b, #4bbdc8) 62%, transparent) 72%,
+    color-mix(in srgb, var(--duo-b, #4bbdc8) 18%, transparent)
+  );
+  mix-blend-mode: screen;
+  opacity: 0.92;
+  transition: opacity 0.7s var(--ease-luxe);
+}
+.duotone::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: linear-gradient(to top, color-mix(in srgb, var(--background) 72%, transparent), transparent 45%);
+}
+.duotone:hover img {
+  filter: grayscale(0.35) contrast(1.05) brightness(1);
+  transform: scale(1.045);
+}
+.duotone:hover::after {
+  opacity: 0.4;
+}
+
+/* ============ HERO FILM LAYERS ============ */
+/* Real IBL footage, graded into brand texture. The footage never competes
+   with typography, it carries the emotion underneath it. */
+.hero-film {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: var(--background);
+}
+.hero-film video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 62% 42%;
+  transition:
+    filter 1s var(--ease-luxe),
+    opacity 1s var(--ease-luxe);
+}
+/* Light grade, the heritage look: footage as a luminous memory on paper */
+html[data-theme="light"] .hero-film video {
+  filter: grayscale(0.45) brightness(1.06) contrast(1.02) saturate(0.95);
+}
+/* Abyss grade, the premiere look: footage as a night ocean, blacks lifted,
+   a whisper of teal so the image never dies under the veil */
+html[data-theme="abyss"] .hero-film video,
+html[data-theme="oled"] .hero-film video {
+  filter: saturate(0.8) brightness(0.6) contrast(1.08) hue-rotate(-4deg);
+}
+html[data-theme="sepia"] .hero-film video {
+  filter: sepia(0.55) brightness(1.08) contrast(0.96) saturate(0.78);
+}
+
+/* The veil, heavy where typography lives, breathing where footage shines */
+.hero-veil {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  transition: background 1s var(--ease-luxe);
+}
+html[data-theme="light"] .hero-veil {
+  background:
+    radial-gradient(90% 70% at 78% 30%, rgba(30, 154, 167, 0.1), transparent 62%),
+    linear-gradient(
+      100deg,
+      rgba(248, 246, 241, 0.975) 0%,
+      rgba(248, 246, 241, 0.95) 26%,
+      rgba(248, 246, 241, 0.72) 46%,
+      rgba(246, 244, 238, 0.4) 66%,
+      rgba(224, 236, 235, 0.16) 88%,
+      rgba(214, 231, 231, 0.12) 100%
+    ),
+    linear-gradient(to top, rgba(248, 246, 241, 0.88) 0%, rgba(248, 246, 241, 0.3) 22%, transparent 42%);
+}
+html[data-theme="abyss"] .hero-veil,
+html[data-theme="oled"] .hero-veil {
+  background:
+    radial-gradient(120% 90% at 72% 8%, rgba(75, 189, 200, 0.1), transparent 55%),
+    radial-gradient(70% 55% at 18% 92%, rgba(238, 108, 43, 0.07), transparent 65%),
+    linear-gradient(
+      100deg,
+      rgba(9, 13, 33, 0.86) 0%,
+      rgba(9, 13, 33, 0.7) 32%,
+      rgba(10, 15, 38, 0.44) 56%,
+      rgba(8, 12, 30, 0.48) 100%
+    ),
+    linear-gradient(to top, rgba(4, 6, 13, 0.78) 0%, rgba(5, 8, 18, 0.3) 24%, transparent 44%);
+}
+html[data-theme="sepia"] .hero-veil {
+  background:
+    linear-gradient(
+      100deg,
+      rgba(242, 234, 217, 0.93) 0%,
+      rgba(242, 234, 217, 0.78) 38%,
+      rgba(238, 228, 205, 0.5) 70%,
+      rgba(235, 222, 195, 0.34) 100%
+    ),
+    linear-gradient(to top, rgba(242, 234, 217, 0.84), transparent 38%);
+}
+
+/* The trust vault. A sealed dark room in the abyss grades, a blush paper
+   vault in daylight so the page never tears at the seams. */
+.trust-band {
+  background: linear-gradient(160deg, #0a0e23 0%, #26102a 100%);
+  transition: background 0.9s var(--ease-luxe);
+}
+html[data-theme="light"] .trust-band {
+  background:
+    radial-gradient(85% 60% at 85% 10%, rgba(214, 51, 132, 0.07), transparent 60%),
+    linear-gradient(160deg, #faf3f0 0%, #f6e9ec 58%, #f3dfe6 100%);
+}
+html[data-theme="sepia"] .trust-band {
+  background: linear-gradient(160deg, #f4ecdc 0%, #efe2cf 100%);
+}
+
+/* Corner slate marks, quiet film furniture on grand screens only */
+.hero-slate {
+  position: absolute;
+  z-index: 6;
+  pointer-events: none;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  color: color-mix(in srgb, var(--foreground) 55%, transparent);
+  animation: slate-breathe 5.2s var(--ease-luxe) infinite;
+}
+/* The barely there heartbeat of a projected frame */
+@keyframes slate-breathe {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.82;
+  }
+}
+/* The footage rides slower than the page, a window not a sticker */
+.hero-film {
+  transform: scale(1.08);
+  will-change: transform;
+}
+
+/* ============ EDITORIAL DEVICES ============ */
+.diag-cut-b {
+  clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+}
+.diag-cut-t {
+  clip-path: polygon(0 8%, 100% 0, 100% 100%, 0 100%);
+}
+.diag-cut-both {
+  clip-path: polygon(0 7%, 100% 0, 100% 93%, 0 100%);
+}
+/* Cluster flood seams. The insets are fixed svh lengths rather than
+   percentages of each panel, so every diagonal shares one slope and the
+   12svh overlap always covers the seam, whatever heights the content
+   gives the panels. No paper can peek through. */
+.seam-t {
+  clip-path: polygon(0 8svh, 100% 0, 100% 100%, 0 100%);
+}
+.seam-b {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 7svh), 0 100%);
+}
+.seam-both {
+  clip-path: polygon(0 7svh, 100% 0, 100% calc(100% - 7svh), 0 100%);
+}
+.hairline {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--foreground) 22%, transparent),
+    transparent
+  );
+}
+.rule-cluster {
+  height: 3px;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--active-cluster), transparent 85%);
+}
+
+/* Magnetic buttons */
+.btn-magnetic {
+  /* No position rule: this helper decorates both flow wrappers and fixed
+     docks, and unlayered CSS here would beat Tailwind's layered `fixed`
+     utility (the bug that once pinned the chat dock into page flow). */
+  transition: transform 0.5s var(--ease-luxe), box-shadow 0.5s var(--ease-luxe);
+  will-change: transform;
+}
+
+/* Teal wipe transition surface */
+.wipe-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  pointer-events: none;
+  background: var(--ibl-teal);
+  transform: translateY(100%);
+}
+
+/* Custom range of handy utilities */
+.tabular {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Marquee row */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: ticker-scroll 46s linear infinite;
+}
+html[data-motion="reduced"] .marquee-track,
+html[data-a11y="epilepsy"] .marquee-track,
+html[data-a11y="adhd"] .marquee-track {
+  animation: none;
+}
+
+/* ============ ACCESSIBILITY PROFILES ============ */
+html[data-a11y="low-vision"] {
+  font-size: 118%;
+}
+html[data-a11y="low-vision"] body {
+  letter-spacing: 0;
+  line-height: 1.75;
+}
+html[data-a11y="low-vision"] :focus-visible {
+  outline-width: 4px;
+}
+html[data-a11y="low-vision"] .caption,
+html[data-a11y="low-vision"] .eyebrow {
+  font-size: 0.95rem;
+}
+html[data-a11y="low-vision"] {
+  --border: rgba(139, 166, 180, 0.4);
+}
+html[data-a11y="dyslexia"] body {
+  letter-spacing: 0.035em;
+  word-spacing: 0.14em;
+  line-height: 1.9;
+}
+html[data-a11y="dyslexia"] .h-display,
+html[data-a11y="dyslexia"] .h-mega,
+html[data-a11y="dyslexia"] .h-section {
+  letter-spacing: 0.005em;
+}
+html[data-a11y="motor"] button,
+html[data-a11y="motor"] a,
+html[data-a11y="motor"] [role="button"],
+html[data-a11y="motor"] input,
+html[data-a11y="motor"] select {
+  min-height: 56px;
+  min-width: 56px;
+}
+html[data-a11y="motor"] .tilt-card,
+html[data-a11y="motor"] .btn-magnetic {
+  transition: none !important;
+}
+html[data-a11y="adhd"] .grain::before,
+html[data-a11y="adhd"] .duotone::after {
+  opacity: 0.35;
+}
+html[data-a11y="adhd"] .marquee-track {
+  animation: none;
+}
+html[data-a11y="adhd"] img {
+  filter: saturate(0.75);
+}
+
+/* Print, for the report generator */
+@media print {
+  body {
+    background: #fff !important;
+    color: #111 !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
+
+/* ============ CUSTOM CURSOR (Task 5-c) ============ */
+/* The signature pointer layer. The html attribute is owned by the
+   CustomCursor component and only becomes "custom" while the layer
+   truly renders, so the OS cursor returns on its own everywhere else. */
+html[data-cursor="custom"],
+html[data-cursor="custom"] * {
+  cursor: none !important;
+}
+.ibl-cursor-layer,
+.ibl-cursor-layer * {
+  pointer-events: none !important;
+}
+.ibl-cursor-layer {
+  transition: opacity 0.22s var(--ease-luxe);
+}
+.ibl-cursor-layer[data-hidden="true"] {
+  opacity: 0;
+}
+
+/* The dot, 6px, follows the pointer exactly */
+.ibl-cursor-dot {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
+  border-radius: 9999px;
+  background: var(--foreground);
+  will-change: transform;
+  transition: background-color 0.14s ease-out, opacity 0.18s var(--ease-luxe);
+}
+.ibl-cursor-dot[data-down="true"] {
+  background: var(--ibl-teal);
+}
+.ibl-cursor-dot[data-state="label"],
+.ibl-cursor-dot[data-state="ibeam"] {
+  opacity: 0;
+}
+
+/* The ring, 34px, trails on damped spring physics */
+.ibl-cursor-ring {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 34px;
+  height: 34px;
+  margin: -17px 0 0 -17px;
+  border: 1.25px solid color-mix(in srgb, var(--foreground) 55%, transparent);
+  border-radius: 9999px;
+  will-change: transform;
+  transition: border-color 0.22s var(--ease-luxe);
+}
+.ibl-cursor-ring[data-state="interactive"],
+.ibl-cursor-ring[data-state="label"],
+.ibl-cursor-ring[data-state="ibeam"] {
+  border-color: var(--ibl-teal);
+}
+
+/* The micro label that rides inside the expanded ring */
+.ibl-cursor-label {
+  position: fixed;
+  left: 0;
+  top: 0;
+  font-size: 9px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  /* the captain's chip: an ink pill with paper letters, readable over
+     teal buttons, photography and dark grades alike */
+  padding: 4px 8px 4px 9px; /* optical center against the trailing track */
+  border-radius: 999px;
+  color: var(--background);
+  background: color-mix(in srgb, var(--foreground) 92%, transparent);
+  opacity: 0;
+  transform-origin: center;
+  transition: opacity 0.16s var(--ease-luxe);
+}
+.ibl-cursor-label[data-state="label"] {
+  opacity: 1;
+}
+
+/* The comet trail, a short teal smear while the pointer moves fast */
+.ibl-cursor-trail {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 14px;
+  height: 14px;
+  margin: -7px 0 0 -7px;
+  border-radius: 9999px;
+  background: var(--ibl-teal);
+  filter: blur(5px);
+  opacity: 0;
+  will-change: transform, opacity;
+}
+
+/* ============ CUSTOM CURSOR REFINEMENTS (Task 5-c) ============ */
+/* Appended after the first cursor pass. The I-beam state morphs the
+   ring by anisotropic transform scale, which would squeeze the
+   painted 1.25px border down to a sub pixel on the vertical sides
+   and leave a bar made of two faint ticks. Instead the caret state
+   fills the same shape solid teal and dissolves the border, so the
+   2px x 22px bar keeps real sides. The rAF loop still writes
+   transforms and opacity only, these colors ride data-state. */
+.ibl-cursor-ring {
+  transition:
+    border-color 0.22s var(--ease-luxe),
+    background-color 0.22s var(--ease-luxe);
+}
+.ibl-cursor-ring[data-state="ibeam"] {
+  background: var(--ibl-teal);
+  border-color: transparent;
+}
