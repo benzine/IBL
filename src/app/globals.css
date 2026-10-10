@@ -106,9 +106,11 @@
   --ease-luxe: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-luxe-in-out: cubic-bezier(0.83, 0, 0.17, 1);
 
-  /* Dark abyss is the default cinematic theme. The night is IBL navy,
-     lifted clear of black so the brand reads on every panel: a deep
-     ink-navy field between the brand anchors, never a generic dark mode. */
+  /* The root variable set is the night grade — brand ink navy lifted clear
+     of black, the shared foundation of the abyss and OLED grades. The
+     document always resolves an explicit grade before first paint: light
+     (gallery ivory) is the heritage default of the group, the dark grades
+     are a choice. This block is the variable base, not the default look. */
   --radius: 0.9rem;
   --background: #151b4a;
   --foreground: #eaf5f6;
