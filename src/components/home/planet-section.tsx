@@ -264,7 +264,7 @@ export function PlanetSection() {
       id="planet"
       aria-labelledby="planet-title"
       className="grain relative scroll-mt-24 overflow-hidden py-20 sm:py-28"
-      style={{ background: "linear-gradient(160deg, #0A0E23 0%, #0F2A1D 55%, #123324 100%)" }}
+      style={{ background: "linear-gradient(160deg, #151B4A 0%, #113227 55%, #15412F 100%)" }}
     >
       <div className="relative z-[1] mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div ref={headerRef} style={headerStyle}>

@@ -122,12 +122,12 @@ html[data-theme="sepia"] .vessel-grade { opacity: .82; }
 /* bottom anchor so the margin instruments print legibly over any water */
 .vessel-shade {
   position: absolute; inset: 0; z-index: 2; pointer-events: none;
-  background: linear-gradient(to top, rgb(8 11 26 / .62), rgb(8 11 26 / 0) 46%);
+  background: linear-gradient(to top, rgb(10 14 36 / .62), rgb(10 14 36 / 0) 46%);
   transition: background 0.6s var(--ease-luxe);
 }
 /* bridge mode: the bottom anchor presses deeper for the margin instruments */
 .vessel-scene[data-fleet="on"] .vessel-shade {
-  background: linear-gradient(to top, rgb(8 11 26 / .74), rgb(8 11 26 / 0) 54%);
+  background: linear-gradient(to top, rgb(10 14 36 / .74), rgb(10 14 36 / 0) 54%);
 }
 /* the radar sweep crossing the plate */
 .vessel-sweep {
@@ -371,7 +371,7 @@ html[data-theme="sepia"] .contact-detail {
   color: color-mix(in srgb, var(--muted-foreground) 55%, var(--foreground));
 }
 .contact:hover .contact-detail { max-height: 1.5em; opacity: 1; margin-top: .16rem; }
-.contact:hover .contact-tag { background: rgb(8 11 26 / .82); }
+.contact:hover .contact-tag { background: rgb(10 14 36 / .82); }
 html[data-theme="light"] .contact:hover .contact-tag,
 html[data-theme="sepia"] .contact:hover .contact-tag {
   background: color-mix(in srgb, var(--popover) 92%, rgb(16 22 58 / .1));
@@ -426,7 +426,7 @@ html[data-theme="sepia"] .contact:hover .contact-tag {
 .fleet-panel-clip { overflow: hidden; min-height: 0; }
 .fleet-panel-inner {
   padding: .72rem .85rem .62rem; border-radius: .85rem;
-  background: rgb(8 11 26 / .58); border: 1px solid rgb(205 238 241 / .22);
+  background: rgb(10 14 36 / .58); border: 1px solid rgb(205 238 241 / .22);
   backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
   color: #eef6f7;
 }

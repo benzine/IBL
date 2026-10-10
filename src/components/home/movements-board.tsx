@@ -23,20 +23,20 @@ import { BreakdownPopover, type BreakdownRow } from "./pulse-hud";
 
 const BOARD_CSS = `
 .movements-board {
-  background: linear-gradient(180deg, #10152E 0%, #0B1024 100%);
+  background: linear-gradient(180deg, #18204A 0%, #10163A 100%);
   box-shadow:
     inset 0 1px 0 rgba(244, 239, 228, 0.07),
-    inset 0 -34px 70px -46px rgba(0, 0, 0, 0.72),
-    0 36px 90px -46px rgba(16, 21, 46, 0.6);
+    inset 0 -34px 70px -46px rgba(6, 9, 26, 0.72),
+    0 36px 90px -46px rgba(18, 24, 66, 0.6);
   transition: background 0.9s var(--ease-luxe), box-shadow 0.9s var(--ease-luxe);
 }
 /* The abyss grades: the sealed room opens into glass over the night ocean */
 html[data-theme="abyss"] .movements-board,
 html[data-theme="oled"] .movements-board {
-  background: linear-gradient(180deg, rgba(16, 21, 46, 0.66) 0%, rgba(11, 16, 36, 0.46) 100%);
+  background: linear-gradient(180deg, rgb(18 24 66 / 0.5) 0%, rgb(12 17 44 / 0.38) 100%);
   box-shadow:
     inset 0 1px 0 rgba(244, 239, 228, 0.06),
-    0 30px 80px -50px rgba(0, 0, 0, 0.6);
+    0 30px 80px -50px rgba(6, 9, 26, 0.6);
 }
 /* Paper grades: the board is pressed into the sheet, ink not glow */
 html[data-theme="light"] .movements-board,

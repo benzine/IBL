@@ -163,9 +163,13 @@ export function ExperienceShell() {
   const order = useMemo(() => LENSES[renderedLens].order, [renderedLens]);
   const lensTemp = LENSES[renderedLens].temperature;
 
+  /* No wrapper background on purpose: the body paints the brand field,
+     and the fixed night-grade atmosphere (globals.css, THE NIGHT GRADE
+     ATMOSPHERE) lives between the body paint and this content, so every
+     open section inherits the cinematic lighting */
   return (
     <div
-      className="flex min-h-svh flex-col bg-background text-foreground"
+      className="flex min-h-svh flex-col text-foreground"
       style={{ ["--lens-temp" as string]: lensTemp }}
     >
       {!booted && (

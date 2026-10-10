@@ -106,13 +106,15 @@
   --ease-luxe: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-luxe-in-out: cubic-bezier(0.83, 0, 0.17, 1);
 
-  /* Dark abyss is the default cinematic theme */
+  /* Dark abyss is the default cinematic theme. The night is IBL navy,
+     lifted clear of black so the brand reads on every panel: a deep
+     ink-navy field between the brand anchors, never a generic dark mode. */
   --radius: 0.9rem;
-  --background: #0a0e23;
+  --background: #151b4a;
   --foreground: #eaf5f6;
-  --card: rgba(255, 255, 255, 0.04);
+  --card: rgba(255, 255, 255, 0.045);
   --card-foreground: #eaf5f6;
-  --popover: #0d1330;
+  --popover: #1c2457;
   --popover-foreground: #eaf5f6;
   --primary: #4bbdc8;
   --primary-foreground: #06131a;
@@ -131,7 +133,7 @@
   --chart-3: #ee6c2b;
   --chart-4: #d63384;
   --chart-5: #212979;
-  --sidebar: #0a0e23;
+  --sidebar: #151b4a;
   --sidebar-foreground: #eaf5f6;
   --sidebar-primary: #4bbdc8;
   --sidebar-primary-foreground: #06131a;
@@ -174,11 +176,14 @@
 }
 
 [data-theme="oled"] {
-  --background: #000000;
+  /* The true night: the deepest grade, still IBL navy at its blackest —
+     a navy-tinted near-black rather than pure #000, so even the power-
+     saving grade never breaks the brand */
+  --background: #060a1e;
   --foreground: #eaf5f6;
-  --card: rgba(255, 255, 255, 0.03);
+  --card: rgba(255, 255, 255, 0.035);
   --card-foreground: #eaf5f6;
-  --popover: #050505;
+  --popover: #0c1230;
   --popover-foreground: #eaf5f6;
   --primary: #4bbdc8;
   --primary-foreground: #06131a;
@@ -629,6 +634,111 @@ html[data-theme="sepia"] .grain::before {
   mix-blend-mode: multiply;
 }
 
+/* ============ THE NIGHT GRADE ATMOSPHERE ============ */
+/* The dark grades are a projected film, not a painted wall. Two fixed
+   layers painted BELOW every panel turn the flat navy field into a lit
+   stage. body::before carries the stage lights — a teal key from above
+   (moonlight on the night ocean), a plum counter-light rising toward
+   the footer in echo of the trust vault, a faint industrials ember low
+   left, all laid over a vertical depth ladder so the floor of the
+   frame is always deeper than its sky. body::after is the lens — a
+   whisper of film grain across the whole night, a vignette that sinks
+   the corners, and a lower-half fall-off toward the end credits.
+   Both ride under the content and above the brand navy base, so every
+   open section, translucent card and glass panel inherits the lighting
+   for free. The base stays the brand anchor #151b4a — the lights only
+   grade the field, never replace it. The paper grades (light, sepia)
+   keep their flat gallery calm. */
+html.dark body::before,
+html.dark body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  transition: background 0.9s var(--ease-luxe);
+}
+html.dark body::before {
+  background:
+    radial-gradient(120% 85% at 50% -22%, rgba(75, 189, 200, 0.13), transparent 58%),
+    radial-gradient(90% 75% at 88% 118%, rgba(130, 62, 145, 0.16), transparent 62%),
+    radial-gradient(55% 42% at 6% 108%, rgba(238, 108, 43, 0.055), transparent 60%),
+    linear-gradient(180deg, #1b2358 0%, #151b4a 26%, #131a43 58%, #0e1336 100%);
+}
+html.dark body::after {
+  background:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.17'/%3E%3C/svg%3E") repeat,
+    radial-gradient(140% 110% at 50% 40%, transparent 55%, rgba(6, 9, 26, 0.32) 100%),
+    linear-gradient(180deg, rgba(10, 14, 43, 0) 42%, rgba(8, 11, 34, 0.3) 100%);
+}
+/* OLED, the late-night screening: the same direction of light, quieter
+   and deeper — the pools recede, the ladder descends further and the
+   vignette cools, but the field never leaves the navy family */
+html[data-theme="oled"] body::before {
+  background:
+    radial-gradient(120% 85% at 50% -22%, rgba(75, 189, 200, 0.1), transparent 58%),
+    radial-gradient(90% 75% at 88% 118%, rgba(130, 62, 145, 0.11), transparent 62%),
+    radial-gradient(55% 42% at 6% 108%, rgba(238, 108, 43, 0.04), transparent 60%),
+    linear-gradient(180deg, #0a0f2e 0%, #060a1e 28%, #050918 60%, #03060f 100%);
+}
+html[data-theme="oled"] body::after {
+  background:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.18'/%3E%3C/svg%3E") repeat,
+    radial-gradient(140% 110% at 50% 40%, transparent 55%, rgba(2, 4, 15, 0.36) 100%),
+    linear-gradient(180deg, rgba(4, 7, 22, 0) 42%, rgba(3, 6, 18, 0.34) 100%);
+}
+/* The film develops: where scroll-driven animation is supported the
+   stage lights recede as the story deepens — the page opens key-lit
+   and ends in the small hours. Grain and vignette hold the frame.
+   The animation is scroll-linked, never autonomous, so it respects
+   every motion preference by construction. */
+@supports (animation-timeline: scroll()) {
+  html.dark body::before {
+    animation: night-lights auto linear both;
+    animation-timeline: scroll(root block);
+  }
+}
+@keyframes night-lights {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.42;
+  }
+}
+/* Glass catches the light: in the night grades the upper edge of every
+   glass panel brightens, the refractive rim of a lit frame (per VLM
+   review: sharpened from the first pass — the rim should read as a
+   caught highlight, not a soft glow) */
+html.dark .glass {
+  border-top-color: color-mix(in srgb, var(--foreground) 34%, transparent);
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.085), rgba(255, 255, 255, 0) 40%);
+}
+html.dark .glass-strong {
+  border: 1px solid color-mix(in srgb, var(--foreground) 16%, transparent);
+  border-top-color: color-mix(in srgb, var(--foreground) 32%, transparent);
+  background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0) 44%);
+}
+/* Accessibility: the ambient grain is visual noise — quiet it for the
+   ADHD profile while the vignette keeps the geometry of the grade */
+html[data-a11y="adhd"].dark body::after {
+  background:
+    radial-gradient(140% 110% at 50% 40%, transparent 55%, rgba(6, 9, 26, 0.32) 100%),
+    linear-gradient(180deg, rgba(10, 14, 43, 0) 42%, rgba(8, 11, 34, 0.3) 100%);
+}
+html[data-a11y="adhd"][data-theme="oled"] body::after {
+  background:
+    radial-gradient(140% 110% at 50% 40%, transparent 55%, rgba(2, 4, 15, 0.36) 100%),
+    linear-gradient(180deg, rgba(4, 7, 22, 0) 42%, rgba(3, 6, 18, 0.34) 100%);
+}
+/* The print sheet never carries the projection */
+@media print {
+  html.dark body::before,
+  html.dark body::after {
+    display: none;
+  }
+}
+
 /* ============ DUOTONE PHOTOGRAPHY ============ */
 .duotone {
   position: relative;
@@ -693,10 +803,13 @@ html[data-theme="light"] .hero-film video {
   filter: grayscale(0.45) brightness(1.06) contrast(1.02) saturate(0.95);
 }
 /* Abyss grade, the premiere look: footage as a night ocean, blacks lifted,
-   a whisper of teal so the image never dies under the veil */
-html[data-theme="abyss"] .hero-film video,
+   a whisper of teal so the image never dies under the veil; brightened to
+   sit inside the lifted navy field rather than below it */
+html[data-theme="abyss"] .hero-film video {
+  filter: saturate(0.85) brightness(0.72) contrast(1.06) hue-rotate(-6deg);
+}
 html[data-theme="oled"] .hero-film video {
-  filter: saturate(0.8) brightness(0.6) contrast(1.08) hue-rotate(-4deg);
+  filter: saturate(0.8) brightness(0.58) contrast(1.1) hue-rotate(-4deg);
 }
 html[data-theme="sepia"] .hero-film video {
   filter: sepia(0.55) brightness(1.08) contrast(0.96) saturate(0.78);
@@ -730,12 +843,17 @@ html[data-theme="oled"] .hero-veil {
     radial-gradient(70% 55% at 18% 92%, rgba(238, 108, 43, 0.07), transparent 65%),
     linear-gradient(
       100deg,
-      rgba(9, 13, 33, 0.86) 0%,
-      rgba(9, 13, 33, 0.7) 32%,
-      rgba(10, 15, 38, 0.44) 56%,
-      rgba(8, 12, 30, 0.48) 100%
+      color-mix(in srgb, var(--background) 86%, transparent) 0%,
+      color-mix(in srgb, var(--background) 70%, transparent) 32%,
+      color-mix(in srgb, var(--background) 44%, transparent) 56%,
+      color-mix(in srgb, var(--background) 48%, transparent) 100%
     ),
-    linear-gradient(to top, rgba(4, 6, 13, 0.78) 0%, rgba(5, 8, 18, 0.3) 24%, transparent 44%);
+    linear-gradient(
+      to top,
+      color-mix(in srgb, var(--background) 78%, transparent) 0%,
+      color-mix(in srgb, var(--background) 30%, transparent) 24%,
+      transparent 44%
+    );
 }
 html[data-theme="sepia"] .hero-veil {
   background:
@@ -750,9 +868,11 @@ html[data-theme="sepia"] .hero-veil {
 }
 
 /* The trust vault. A sealed dark room in the abyss grades, a blush paper
-   vault in daylight so the page never tears at the seams. */
+   vault in daylight so the page never tears at the seams. The dark room
+   starts at the live page navy so it fuses with the grade, then descends
+   into the vault's plum. */
 .trust-band {
-  background: linear-gradient(160deg, #0a0e23 0%, #26102a 100%);
+  background: linear-gradient(160deg, var(--background) 0%, #2a1238 100%);
   transition: background 0.9s var(--ease-luxe);
 }
 html[data-theme="light"] .trust-band {

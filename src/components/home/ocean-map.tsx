@@ -77,16 +77,16 @@ function useGrade(): Grade {
 
 const CARTO = {
   abyss: {
-    ocean: "#0A0E23",
+    ocean: "var(--background)",
     texture:
       "radial-gradient(ellipse 65% 50% at 60% 42%, rgba(75,189,200,0.08), transparent 70%), radial-gradient(rgba(75,189,200,0.06) 1px, transparent 1.4px)",
     graticule: "rgba(75,189,200,0.09)",
-    land: "rgba(19,26,61,0.85)",
+    land: "rgba(30,39,86,0.9)",
     landStroke: "rgba(75,189,200,0.25)",
-    isle: "rgba(19,26,61,0.9)",
+    isle: "rgba(34,44,94,0.92)",
     isleStroke: "rgba(75,189,200,0.35)",
     route: "rgba(75,189,200,0.32)",
-    port: "rgba(19,26,61,0.9)",
+    port: "rgba(34,44,94,0.92)",
     portStroke: "rgba(75,189,200,0.35)",
     landLabel: "rgba(139,166,180,0.5)",
     oceanLabel: "rgba(234,245,246,0.22)",

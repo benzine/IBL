@@ -225,7 +225,9 @@ function StoryPlayer({ person, onEnded }: { person: Person; onEnded: () => void 
       onKeyDown={onKeyDown}
       tabIndex={-1}
       aria-label={`${person.name}, thirty second story player. Space toggles play.`}
-      className="flex max-h-[86vh] flex-col overflow-y-auto outline-none sm:max-h-[80vh] sm:flex-row"
+      /* no-scrollbar: the story window scrolls by wheel, touch and
+         keyboard, but never shows a bar over the glass */
+      className="no-scrollbar flex max-h-[86vh] flex-col overflow-y-auto outline-none sm:max-h-[80vh] sm:flex-row"
     >
       <div
         className="duotone relative aspect-[3/4] w-full shrink-0 overflow-hidden sm:aspect-auto sm:h-full sm:min-h-[420px] sm:w-[42%]"
@@ -562,7 +564,7 @@ export function PeopleMosaicSection() {
       </div>
 
       <Dialog open={active !== null} onOpenChange={closeStory}>
-        <DialogContent className="glass-strong gap-0 overflow-hidden rounded-2xl p-0 sm:max-w-lg md:overflow-y-auto max-md:inset-x-0 max-md:bottom-0 max-md:top-auto max-md:max-w-full max-md:translate-x-0 max-md:translate-y-0 max-md:rounded-b-none max-md:rounded-t-3xl max-md:border-b-0">
+        <DialogContent className="no-scrollbar glass-strong gap-0 overflow-hidden rounded-2xl p-0 sm:max-w-lg md:overflow-y-auto max-md:inset-x-0 max-md:bottom-0 max-md:top-auto max-md:max-w-full max-md:translate-x-0 max-md:translate-y-0 max-md:rounded-b-none max-md:rounded-t-3xl max-md:border-b-0">
           {active ? <StoryPlayer person={active} onEnded={() => setCompletedId(active.id)} /> : null}
         </DialogContent>
       </Dialog>
