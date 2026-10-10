@@ -37,7 +37,18 @@ No environment variables are required. Two optional behaviours:
   `src/lib/db.ts`). Read entries under *Observability → Logs*, or wire
   a real database there when you want persistence.
 
+## Dependencies are pinned and install-verified
+
+Every dependency is pinned to the exact version the experience was
+built and verified against, and a `package-lock.json` ships with the
+package, so Vercel installs the identical tree (`npm ci`) instead of
+resolving fresh ranges. The install itself was verified against the
+real npm registry and the package was production-built green
+(`VERCEL=1 next build`) before shipping — the exact pipeline Vercel
+runs.
+
 Local development: `npm install && npm run dev`.
+Exact verified install: `npm ci && npm run dev`.
 Local production run: `VERCEL=1 npm run build && VERCEL=1 npm start`
 (the `VERCEL` flag switches the config to its deployed posture).
 
@@ -76,6 +87,32 @@ with a command line, on this or any other site on the internet. What
 these measures guarantee is that nothing usable can be *taken*: no
 readable code, no selectable content, no printable pages, no savable
 copy, no embeddable mirror.
+
+## The dark grades are IBL navy
+
+Both dark grades carry the brand's ink-navy identity rather than a
+generic black: the default abyss grade is a lifted midnight navy
+field (#151b4a, unmistakably the #212979 family), and the OLED
+"true night" grade is a navy-tinted near-black (#060a1e) that keeps
+its power-saving depth without ever breaking the brand. Every dark
+surface (hero veil, trust vault, ocean chart, movements board, pulse
+photo shades, planet band) tracks the same navy family.
+
+## The dark grades are a projected film
+
+The night navy is graded, never a flat painted wall. Two fixed layers
+(`body::before` / `body::after` in globals.css, "THE NIGHT GRADE
+ATMOSPHERE") are painted below all content: a teal key light from
+above, a plum counter-light rising toward the footer, an industrials
+ember low-left, a vertical navy depth ladder, monochrome film grain
+across the whole field, and a soft corner vignette. Where the browser
+supports scroll-driven animation the stage lights recede as the page
+descends (opacity 1 to 0.42), so the story opens key-lit and ends in
+the small hours; every other browser keeps the static graded field.
+Glass panels catch light on their top edge, OLED runs a quieter and
+deeper cut of the same lighting, the ADHD profile drops the ambient
+grain, print drops both layers, and the paper grades (light, sepia)
+are untouched. No JavaScript was added - it is all CSS.
 
 ## Package differences from the authoring sandbox
 
