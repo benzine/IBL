@@ -114,22 +114,23 @@ deeper cut of the same lighting, the ADHD profile drops the ambient
 grain, print drops both layers, and the paper grades (light, sepia)
 are untouched. No JavaScript was added - it is all CSS.
 
-## Light is the enforced first impression
+## Light is the enforced first impression, and the faces read fresh
 
 The group's identity is white paper, so the heritage light grade is
 the default: the server renders `data-theme="light"` and the pre-paint
-script defaults to light for every fresh visitor. Because earlier
-versions of the site defaulted to (or left browsers remembering) the
-dark navy grade, the pre-paint script also carries a one-time brand
-reset: on the first visit after this redeploy, any remembered dark
-grade (abyss, OLED, sepia) in the stored preferences is rewritten to
-light before it is ever honored, and a `ibl-brand-reset-1` flag marks
-the reset as done. The owner and every stakeholder therefore open on
-the white paper exactly once; afterwards the moon button and its
-memory behave as before (the explicit choice is honored on every
-revisit). Other preferences (lens, language, accessibility) are
-untouched by the reset, and `auto` — the sun-following mode — is
-deliberately preserved.
+script defaults to light for every fresh visitor. The pre-paint script
+also carries versioned one-time brand resets, each firing exactly once
+per browser after this redeploy: reset 1 returns any remembered dark
+grade (abyss, OLED, sepia) to light before it is ever honored, and
+reset 2 clears the remembered "met" faces — watching a thirty-second
+story to the end auto-marks the person, and review browsers had seen
+them all — so the people mosaic opens fresh. Flags `ibl-brand-reset-1`
+and `ibl-brand-reset-2` mark each reset as done. The owner and every
+stakeholder therefore open on the white paper with a fresh mosaic
+exactly once; afterwards the moon button, its memory and the met
+faces behave as before. Other preferences (lens, language,
+accessibility) are untouched by the resets, and `auto` — the
+sun-following mode — is deliberately preserved.
 
 ## Package differences from the authoring sandbox
 
